@@ -1,8 +1,71 @@
 @font-face {
   font-family: Lato;
-  src: url("./assets/fonts/Lato/Lato-Regular.ttf");
+  src: url("./assets/fonts/Lato-Regular.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Lato';
+}
+
+.title {
+  margin: 10px auto;
+  font-size: 30px;
+  color: rgba(101, 134, 177, 0.8);
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyboard-wrapp {
+  max-width: 1040px;
+  width: 100%;
+  background-color: #888888;
+}
+
+.text {
+  max-width: 1040px;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 30px;
+  font-size: 26px;
+  background-color: #f7f7f7;
+  padding: 10px;
+}
+
+.description {
+  margin: 10px auto;
+}
+
+.language {
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.keys {
+  width: 60px;
+  height: 60px;
+  background-color: #444444;
+  color: #ffffff;
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backspace-key {
+  width: 148px;
 }
