@@ -69,3 +69,32 @@ body {
 .backspace-key {
   width: 148px;
 }
+
+.tab-key {
+  width: 70px;
+}
+
+.del-key {
+  width: 70px;
+}
+
+.caps-lock-key {
+  width: 148px;
+}
+
+.enter-key {
+  width: 128px;
+}
+
+.shift-left-key {
+  width: 148px;
+}
+
+.shift-right-key {
+  width: 128px;
+}
+
+.whitespace-key {
+  max-width: 488px;
+  width: 100%;
+}
