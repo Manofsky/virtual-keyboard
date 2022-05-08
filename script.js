@@ -30,12 +30,20 @@ function getKeyboardWrappContent() {
 }
 keyboardWrapp.append(getKeyboardWrappContent());
 
+let row1 = document.querySelector("body > div > div > div:nth-child(1)");
+let row2 = document.querySelector("body > div > div > div:nth-child(2)");
+let row3 = document.querySelector("body > div > div > div:nth-child(3)");
+let row4 = document.querySelector("body > div > div > div:nth-child(4)");
+let row5 = document.querySelector("body > div > div > div:nth-child(5)");
+
 function pressVirtualKeyboard() {
   let eventTarget;
   document.addEventListener('mousedown', function (event) {
     eventTarget = event.target;
     if (eventTarget.innerHTML === 'Caps Lock') { event.target.classList.toggle('pressed'); }
-    else if (eventTarget.innerHTML.length < 10 && eventTarget.innerHTML.length > 0) { event.target.classList.add('pressed'); }
+    else if (eventTarget.innerHTML.length < 10 && eventTarget.innerHTML.length > 0) {
+      event.target.classList.add('pressed');
+    }
   });
   document.addEventListener('mouseup', function () {
     if (eventTarget.innerHTML !== 'Caps Lock') {
@@ -45,43 +53,36 @@ function pressVirtualKeyboard() {
 }
 pressVirtualKeyboard();
 
-let row1 = document.querySelector("body > div > div > div:nth-child(1)");
-let row2 = document.querySelector("body > div > div > div:nth-child(2)");
-let row3 = document.querySelector("body > div > div > div:nth-child(3)");
-let row4 = document.querySelector("body > div > div > div:nth-child(4)");
-let row5 = document.querySelector("body > div > div > div:nth-child(5)");
-
-let arrRow1Keycode = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8];
+let arrRow1Code = ['Backquote', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'];
 let arrRow1LowerCaseEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'];
-let arrRow1CapsLockEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'];
 let arrRow1ShiftEn = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'Backspace'];
-let arrRow1LowerCaseRu = ['ё'];
-let arrRow1CapsLockRu = ['Ё'];
-let arrRow1ShiftRu = ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'];
+// let arrRow1CapsLockEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'];
+// let arrRow1LowerCaseRu = ['ё'];
+// let arrRow1CapsLockRu = ['Ё'];
+// let arrRow1ShiftRu = ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'];
 
 
-let arrRow2Keycode = [9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 46];
+let arrRow2Code = ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'];
 let arrRow2LowerCaseEn = ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del'];
 let arrRow2ShiftEn = ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'Del'];
-let arrRow2CapsLockEn = ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\', 'Del'];
+// let arrRow2CapsLockEn = ['Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\', 'Del'];
 
-let arrRow3Keycode = [20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13];
+let arrRow3Code = ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'];
 let arrRow3LowerCaseEn = ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter'];
 let arrRow3ShiftEn = ['Caps Lock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'Enter'];
 
-let arrRow4Keycode = [16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 38, 16];
+let arrRow4Code = ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'];
 let arrRow4LowerCaseEn = ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift'];
 let arrRow4ShiftEn = ['Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '▲', 'Shift'];
 
-let arrRow5Keycode = [17, 91, 18, 32, 18, 37, 40, 39, 17];
 let arrRow5LowerCaseEn = ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'];
 let arrRow5ShiftEn = [];
 
 class RowContent {
-  constructor(arrLowerCaseEn, arrShiftEn, arrRowKeycode) {
+  constructor(arrLowerCaseEn, arrShiftEn, arrRowCode) {
     this.arrLowerCaseEn = arrLowerCaseEn;
     this.arrShiftEn = arrShiftEn;
-    this.arrRowKeycode = arrRowKeycode;
+    this.arrRowCode = arrRowCode;
   }
 
   getRowContent() {
@@ -89,22 +90,48 @@ class RowContent {
     for (let i = 0; i < this.arrLowerCaseEn.length; i++) {
       let keys = document.createElement('div');
       keys.className = "keys";
+      if (this.arrRowCode) {
+        keys.id = this.arrRowCode[i];
+      }
       keys.append(this.arrLowerCaseEn[i]);
       fragment.append(keys);
     }
     return fragment;
   }
+
+  pressPhysicalKeyboard() {
+    let eventTarget;
+    let arrElemId = '';
+    if (this.arrRowCode) { arrElemId = this.arrRowCode; }
+    let arr = this.arrLowerCaseEn;
+    document.addEventListener('keydown', function (event) {
+      eventTarget = event.target;
+      for (let i = 0; i < arr.length; i++) {
+        if (arrElemId[i] === 'CapsLock' || arrElemId[i] === 'ShiftLeft' || arrElemId[i] === 'ShiftRight') { continue }
+        else if (arr[i] === event.key && arrElemId !== '') {
+          document.getElementById(arrElemId[i]).classList.add('pressed');
+        }
+        document.addEventListener('keyup', function () {
+          document.getElementById(arrElemId[i]).classList.remove('pressed');
+        });
+      }
+    });
+  }
 }
-let row1LowerCaseEn = new RowContent(arrRow1LowerCaseEn, arrRow1ShiftEn, arrRow1Keycode);
-let row2LowerCaseEn = new RowContent(arrRow2LowerCaseEn, arrRow2ShiftEn, arrRow2Keycode);
-let row3LowerCaseEn = new RowContent(arrRow3LowerCaseEn, arrRow3ShiftEn, arrRow3Keycode);
-let row4LowerCaseEn = new RowContent(arrRow4LowerCaseEn, arrRow4ShiftEn, arrRow4Keycode);
-let row5LowerCaseEn = new RowContent(arrRow5LowerCaseEn, arrRow5ShiftEn, arrRow5Keycode);
+let row1LowerCaseEn = new RowContent(arrRow1LowerCaseEn, arrRow1ShiftEn, arrRow1Code);
+let row2LowerCaseEn = new RowContent(arrRow2LowerCaseEn, arrRow2ShiftEn, arrRow2Code);
+let row3LowerCaseEn = new RowContent(arrRow3LowerCaseEn, arrRow3ShiftEn, arrRow3Code);
+let row4LowerCaseEn = new RowContent(arrRow4LowerCaseEn, arrRow4ShiftEn, arrRow4Code);
+let row5LowerCaseEn = new RowContent(arrRow5LowerCaseEn, arrRow5ShiftEn);
 row1.append(row1LowerCaseEn.getRowContent());
 row2.append(row2LowerCaseEn.getRowContent());
 row3.append(row3LowerCaseEn.getRowContent());
 row4.append(row4LowerCaseEn.getRowContent());
 row5.append(row5LowerCaseEn.getRowContent());
+row1LowerCaseEn.pressPhysicalKeyboard();
+row2LowerCaseEn.pressPhysicalKeyboard();
+row3LowerCaseEn.pressPhysicalKeyboard();
+row4LowerCaseEn.pressPhysicalKeyboard();
 
 let backspace = document.querySelector("body > div > div > div:nth-child(1) > div:nth-child(14)");
 backspace.className = "keys backspace-key";
