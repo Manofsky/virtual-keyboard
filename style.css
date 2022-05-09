@@ -80,35 +80,35 @@ body {
   transition: border-radius .01s, background-color .2s;
 }
 
-.backspace-key {
+#Backspace {
   width: 148px;
 }
 
-.tab-key {
+#Tab {
   width: 70px;
 }
 
-.del-key {
+#Delete {
   width: 70px;
 }
 
-.caps-lock-key {
+#CapsLock {
   width: 148px;
 }
 
-.enter-key {
+#Enter {
   width: 128px;
 }
 
-.shift-left-key {
+#ShiftLeft {
   width: 148px;
 }
 
-.shift-right-key {
+#ShiftRight {
   width: 128px;
 }
 
-.whitespace-key {
+#Space {
   max-width: 488px;
   width: 100%;
 }

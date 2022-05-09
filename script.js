@@ -75,6 +75,7 @@ let arrRow4Code = ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 
 let arrRow4LowerCaseEn = ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift'];
 let arrRow4ShiftEn = ['Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '▲', 'Shift'];
 
+let arrRow5Code = ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'];
 let arrRow5LowerCaseEn = ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'];
 let arrRow5ShiftEn = [];
 
@@ -90,9 +91,7 @@ class RowContent {
     for (let i = 0; i < this.arrLowerCaseEn.length; i++) {
       let keys = document.createElement('div');
       keys.className = "keys";
-      if (this.arrRowCode) {
-        keys.id = this.arrRowCode[i];
-      }
+      keys.id = this.arrRowCode[i];
       keys.append(this.arrLowerCaseEn[i]);
       fragment.append(keys);
     }
@@ -100,15 +99,12 @@ class RowContent {
   }
 
   pressPhysicalKeyboard() {
-    let eventTarget;
-    let arrElemId = '';
-    if (this.arrRowCode) { arrElemId = this.arrRowCode; }
+    let arrElemId = this.arrRowCode;
     let arr = this.arrLowerCaseEn;
     document.addEventListener('keydown', function (event) {
-      eventTarget = event.target;
       for (let i = 0; i < arr.length; i++) {
-        if (arrElemId[i] === 'CapsLock' || arrElemId[i] === 'ShiftLeft' || arrElemId[i] === 'ShiftRight') { continue }
-        else if (arr[i] === event.key && arrElemId !== '') {
+        if (arrElemId[i] === 'CapsLock' || arrElemId[i] === 'ShiftLeft' || arrElemId[i] === 'ShiftRight' || arrElemId[i] === 'AltLeft' || arrElemId[i] === 'AltRight' || arrElemId[i] === 'ArrowUp' || arrElemId[i] === 'ArrowLeft' || arrElemId[i] === 'ArrowDown' || arrElemId[i] === 'ArrowRight' || arrElemId[i] === 'Space') { continue }
+        else if (arr[i] === event.key) {
           document.getElementById(arrElemId[i]).classList.add('pressed');
         }
         document.addEventListener('keyup', function () {
@@ -122,7 +118,7 @@ let row1LowerCaseEn = new RowContent(arrRow1LowerCaseEn, arrRow1ShiftEn, arrRow1
 let row2LowerCaseEn = new RowContent(arrRow2LowerCaseEn, arrRow2ShiftEn, arrRow2Code);
 let row3LowerCaseEn = new RowContent(arrRow3LowerCaseEn, arrRow3ShiftEn, arrRow3Code);
 let row4LowerCaseEn = new RowContent(arrRow4LowerCaseEn, arrRow4ShiftEn, arrRow4Code);
-let row5LowerCaseEn = new RowContent(arrRow5LowerCaseEn, arrRow5ShiftEn);
+let row5LowerCaseEn = new RowContent(arrRow5LowerCaseEn, arrRow5ShiftEn, arrRow5Code);
 row1.append(row1LowerCaseEn.getRowContent());
 row2.append(row2LowerCaseEn.getRowContent());
 row3.append(row3LowerCaseEn.getRowContent());
@@ -132,152 +128,105 @@ row1LowerCaseEn.pressPhysicalKeyboard();
 row2LowerCaseEn.pressPhysicalKeyboard();
 row3LowerCaseEn.pressPhysicalKeyboard();
 row4LowerCaseEn.pressPhysicalKeyboard();
-
-let backspace = document.querySelector("body > div > div > div:nth-child(1) > div:nth-child(14)");
-backspace.className = "keys backspace-key";
-
-let tab = document.querySelector("body > div > div > div:nth-child(2) > div:nth-child(1)");
-tab.className = "keys tab-key";
-
-let del = document.querySelector("body > div > div > div:nth-child(2) > div:nth-child(15)");
-del.className = "keys del-key";
-
-let capsLock = document.querySelector("body > div > div > div:nth-child(3) > div:nth-child(1)");
-capsLock.className = "keys caps-lock-key";
-
-let enter = document.querySelector("body > div > div > div:nth-child(3) > div:nth-child(13)");
-enter.className = "keys enter-key";
-
-let shiftLeft = document.querySelector("body > div > div > div:nth-child(4) > div:nth-child(1)");
-shiftLeft.className = "keys shift-left-key";
-
-let shiftRight = document.querySelector("body > div > div > div:nth-child(4) > div:nth-child(13)");
-shiftRight.className = "keys shift-right-key";
-
-let controlLeft = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(1)");
-let controlRight = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(9)");
-
-let altLeft = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(3)");
-let altRight = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(5)");
-
-let meta = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(2)");
-let arrowLeft = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(6)");
-let arrowUp = document.querySelector("body > div > div > div:nth-child(4) > div:nth-child(12)");
-let arrowDown = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(7)");
-let arrowRight = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(8)");
-
-let whitespace = document.querySelector("body > div > div > div:nth-child(5) > div:nth-child(4)");
-whitespace.className = "keys whitespace-key";
+row5LowerCaseEn.pressPhysicalKeyboard();
 
 document.addEventListener('keydown', function (event) {
   switch (event.key) {
-    case 'Backspace':
-      backspace.classList.add('pressed');
-      break;
-    case 'Tab':
-      tab.classList.add('pressed');
-      break;
     case 'Delete':
-      del.classList.add('pressed');
+      document.getElementById('Delete').classList.add('pressed');
       break;
     case 'CapsLock':
-      capsLock.classList.toggle('pressed');
+      document.getElementById('CapsLock').classList.toggle('pressed');
       break;
     case 'Enter':
       enter.classList.add('pressed');
       break;
     case 'Meta':
-      meta.classList.add('pressed');
+      document.getElementById('MetaLeft').classList.add('pressed');
       break;
     case 'ArrowLeft':
-      arrowLeft.classList.add('pressed');
+      document.getElementById('ArrowLeft').classList.add('pressed');
       break;
     case 'ArrowUp':
-      arrowUp.classList.add('pressed');
+      document.getElementById('ArrowUp').classList.add('pressed');
       break;
     case 'ArrowDown':
-      arrowDown.classList.add('pressed');
+      document.getElementById('ArrowDown').classList.add('pressed');
       break;
     case 'ArrowRight':
-      arrowRight.classList.add('pressed');
+      document.getElementById('ArrowRight').classList.add('pressed');
       break;
     case ' ':
-      whitespace.classList.add('pressed');
+      document.getElementById('Space').classList.add('pressed');
       break;
   }
   switch (event.code) {
     case 'ShiftLeft':
-      shiftLeft.classList.add('pressed');
+      document.getElementById('ShiftLeft').classList.add('pressed');
       break;
     case 'ShiftRight':
-      shiftRight.classList.add('pressed');
+      document.getElementById('ShiftRight').classList.add('pressed');
       break;
     case 'ControlLeft':
-      controlLeft.classList.add('pressed');
+      document.getElementById('ControlLeft').classList.add('pressed');
       break;
     case 'ControlRight':
-      controlRight.classList.add('pressed');
+      document.getElementById('ControlRight').classList.add('pressed');
       break;
     case 'AltLeft':
-      altLeft.classList.add('pressed');
+      document.getElementById('AltLeft').classList.add('pressed');
       break;
     case 'AltRight':
-      altRight.classList.add('pressed');
+      document.getElementById('AltRight').classList.add('pressed');
       break;
   }
 });
 
 document.addEventListener('keyup', function (event) {
   switch (event.key) {
-    case 'Backspace':
-      backspace.classList.remove('pressed');
-      break;
-    case 'Tab':
-      tab.classList.remove('pressed');
-      break;
     case 'Delete':
-      del.classList.remove('pressed');
+      document.getElementById('Delete').classList.remove('pressed');
       break;
     case 'Enter':
       enter.classList.remove('pressed');
       break;
     case 'Meta':
-      meta.classList.remove('pressed');
+      document.getElementById('MetaLeft').classList.remove('pressed');
       break;
     case 'ArrowLeft':
-      arrowLeft.classList.remove('pressed');
+      document.getElementById('ArrowLeft').classList.remove('pressed');
       break;
     case 'ArrowUp':
-      arrowUp.classList.remove('pressed');
+      document.getElementById('ArrowUp').classList.remove('pressed');
       break;
     case 'ArrowDown':
-      arrowDown.classList.remove('pressed');
+      document.getElementById('ArrowDown').classList.remove('pressed');
       break;
     case 'ArrowRight':
-      arrowRight.classList.remove('pressed');
+      document.getElementById('ArrowRight').classList.remove('pressed');
       break;
     case ' ':
-      whitespace.classList.remove('pressed');
+      document.getElementById('Space').classList.remove('pressed');
       break;
   }
   switch (event.code) {
     case 'ShiftLeft':
-      shiftLeft.classList.remove('pressed');
+      document.getElementById('ShiftLeft').classList.remove('pressed');
       break;
     case 'ShiftRight':
-      shiftRight.classList.remove('pressed');
+      document.getElementById('ShiftRight').classList.remove('pressed');
       break;
     case 'ControlLeft':
-      controlLeft.classList.remove('pressed');
+      document.getElementById('ControlLeft').classList.remove('pressed');
       break;
     case 'ControlRight':
-      controlRight.classList.remove('pressed');
+      document.getElementById('ControlRight').classList.remove('pressed');
       break;
     case 'AltLeft':
-      altLeft.classList.remove('pressed');
+      document.getElementById('AltLeft').classList.remove('pressed');
       break;
     case 'AltRight':
-      altRight.classList.remove('pressed');
+      document.getElementById('AltRight').classList.remove('pressed');
       break;
   }
 });
