@@ -138,9 +138,6 @@ document.addEventListener('keydown', function (event) {
     case 'CapsLock':
       document.getElementById('CapsLock').classList.toggle('pressed');
       break;
-    case 'Enter':
-      enter.classList.add('pressed');
-      break;
     case 'Meta':
       document.getElementById('MetaLeft').classList.add('pressed');
       break;
@@ -186,9 +183,6 @@ document.addEventListener('keyup', function (event) {
   switch (event.key) {
     case 'Delete':
       document.getElementById('Delete').classList.remove('pressed');
-      break;
-    case 'Enter':
-      enter.classList.remove('pressed');
       break;
     case 'Meta':
       document.getElementById('MetaLeft').classList.remove('pressed');
