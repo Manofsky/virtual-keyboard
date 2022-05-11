@@ -100,7 +100,9 @@ class RowContent {
           document.getElementById(arrElemId[i]).classList.add('pressed');
         }
         document.addEventListener('keyup', () => {
-          document.getElementById(arrElemId[i]).classList.remove('pressed');
+          if (arr[i] === event.key && arrElemId[i] !== 'CapsLock' && arrElemId[i] !== 'ShiftLeft' && arrElemId[i] !== 'ShiftRight' && arrElemId[i] !== 'AltLeft' && arrElemId[i] !== 'AltRight' && arrElemId[i] !== 'ArrowUp' && arrElemId[i] !== 'ArrowLeft' && arrElemId[i] !== 'ArrowDown' && arrElemId[i] !== 'ArrowRight' && arrElemId[i] !== 'Space') {
+            document.getElementById(arrElemId[i]).classList.remove('pressed');
+          }
         });
       }
     });
